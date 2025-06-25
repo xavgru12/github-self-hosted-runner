@@ -1,10 +1,6 @@
 #!/bin/bash
 
-REPOSITORY_API_URL="https://api.github.com/repos/xavgru12/meta-swift-project"
-ACTIONS_RUNNER_PATH="/home/xaver/code/actions-runner"
-CURRENT_DIRECTORY="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-
-TOKEN=$(<${CURRENT_DIRECTORY}/credentials.txt)
+source define
 
 curl -L \
   -X POST \

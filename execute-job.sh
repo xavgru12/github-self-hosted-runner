@@ -1,8 +1,9 @@
 #!/bin/bash
 
-DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+source define
+
 CURRENT_UPSTREAM_BRANCH=$(git rev-parse --abbrev-ref @{u} | cut -d/ -f2-)
 
-"$DIR/trigger-job.sh" $CURRENT_UPSTREAM_BRANCH
-"$DIR/start-runner.sh"
+"$CURRENT_DIRECTORY/trigger-job.sh" $CURRENT_UPSTREAM_BRANCH
+"$CURRENT_DIRECTORY/start-runner.sh"
 

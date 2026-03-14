@@ -9,7 +9,7 @@ JIT_CONFIG=$(curl -sL \
   -H "Authorization: Bearer $TOKEN" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   "$REPOSITORY_API_URL/actions/runners/generate-jitconfig" \
-  -d '{"name":"just in time github runner","runner_group_id":1,"labels":["self-hosted","X64","Linux","no-gpu"],"work_folder":"_work"}' \
+  -d '{"name":"just in time github runner","runner_group_id":1,"labels":["self-hosted","X64","Linux","no-gpu","'"$RUNNER_LABEL"'"],"work_folder":"_work"}' \
   | jq -r '.encoded_jit_config')
 
 # Validate JIT_CONFIG is not empty or broken

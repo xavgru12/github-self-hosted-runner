@@ -1,4 +1,4 @@
-RUNNER_LABEL="xaver-runner"
+RUNNER_GROUP_ID=4
 ORG_API_URL=https://api.github.com/orgs/swift-embedded-linux
 REPOSITORY_API_URL="https://api.github.com/repos/xavgru12/meta-swift-examples"
 ACTIONS_RUNNER_PATH="/home/xaver/code/actions-runner"

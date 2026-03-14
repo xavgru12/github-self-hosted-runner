@@ -2,10 +2,25 @@
 
 source define
 
-curl -X PATCH \
+RUNNER_GROUPS=$(curl -s \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  "$ORG_API_URL/actions/runner-groups/3" \
-  -d '{"allows_public_repositories": false}'
+  "$ORG_API_URL/actions/runner-groups" \
+  | jq -r '.runner_groups[].id')
+
+for GROUP_ID in $RUNNER_GROUPS; do
+  if [[ "$GROUP_ID" != $RUNNER_GROUP_ID ]]; then
+    echo "Set private runner group $GROUP_ID"
+
+    curl -s -X PATCH \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      "$ORG_API_URL/actions/runner-groups/$GROUP_ID" \
+      -d '{"allows_public_repositories": false}' \
+      | jq
+  else
+    echo "Skipping runner group $RUNNER_GROUP_ID"
+  fi
+done
 

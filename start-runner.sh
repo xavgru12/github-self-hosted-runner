@@ -20,5 +20,6 @@ fi
 
 # Start the runner
 "${ACTIONS_RUNNER_PATH}/run.sh" --jitconfig "$JIT_CONFIG" &#
-sleep 30
+sleep 15
 "$CURRENT_DIRECTORY/activate-other-runner-groups.sh"
+
